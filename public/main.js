@@ -1,5 +1,6 @@
 $(function () {
 
+    var socket = io();
     var message = $('#chat-message');
     var chat = $('#chat');
 
