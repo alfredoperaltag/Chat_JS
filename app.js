@@ -13,8 +13,12 @@ server.listen(app.get('port'), function () {
     console.log("el servidor iniciado")
 })
 
-var socket = io.listen(server);
+var sockets = io.listen(server);
 
-socket.on('connection', function (socket) {
+sockets.on('connection', function (socket) {
     console.log("nuevo cliente");
+
+    socket.on('mensaje-del-cliente', function (data) {
+        sockets.emit('mensaje-del-servidor', data);
+    });
 });

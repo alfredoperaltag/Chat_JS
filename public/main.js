@@ -8,6 +8,10 @@ $(function () {
 
     $('#message-box').submit(function (e) {
         e.preventDefault();
-        chat.append(message.val() + "<br>");
+        socket.emit('mensaje-del-cliente', message.val());
+        message.val('');
+    });
+    socket.on('mensaje-del-servidor', function (data) {
+        chat.append(data + "<br>");
     });
 });
